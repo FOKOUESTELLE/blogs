@@ -9,7 +9,8 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function index(): View
+    {
         return view('posts.index', [
             'posts' => Post::latest()->paginate(10),
         ]);
