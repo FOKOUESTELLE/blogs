@@ -9,6 +9,5 @@ Route::get('/', function () {
 
 Route::get('/posts', [PostController::class, 'index'])->name('index');
 
-Route::get('/posts-{post}', [PostController::class, 'show'])
-->name('posts.show')
-->whereNumber('post');
+Route::get('/posts-{post:slug}', [PostController::class, 'show'])
+->name('posts.show');
