@@ -26,8 +26,7 @@ class PostController extends Controller
             //'posts' => $category->posts()->paginate(10),
             'posts' => Post::where(
                 'category_id', $category->id
-            )->latest()->paginate(10),
-
+            )->latest()->paginate(perPage: 4),
         ]);
     }
 
@@ -35,9 +34,7 @@ class PostController extends Controller
          {
               return view('posts.index', [
                  //'posts' => $category->posts()->paginate(10),
-                 'posts' => Post:: whereRelation(
-                    'tags', 'tags.id', $tag->id
-                 )->latest()->paginate(10),
+                 'posts' => $tag->posts()->latest()->paginate(10),
              ]);
          }
 
