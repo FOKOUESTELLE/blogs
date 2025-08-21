@@ -23,21 +23,30 @@ class PostController extends Controller
 
     public function postsByCategory(Category $category):View
     {
-         return view('posts.index', [
-            //'posts' => $category->posts()->paginate(10),
-            'posts' => Post::where(
-                'category_id', $category->id
-            )->latest()->paginate(perPage: 4),
-        ]);
+
+        return $this->postView(['category' => $category]);
+
     }
 
      public function postsByTag(Tag $tag):View
          {
-              return view('posts.index', [
-                 //'posts' => $category->posts()->paginate(10),
-                 'posts' => $tag->posts()->latest()->paginate(10),
-             ]);
+            
+        return $this->postView(['tag' => $tag]);
+                
+            
          }
+
+    protected function postView(array $filters): View
+
+    {
+         return view('posts.index', [
+
+            'posts' => Post:: filters($filters)->latest()->paginate(10),
+         ]);
+            
+
+    }
+
 
     public function show (Post $post): View
     {

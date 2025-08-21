@@ -23,12 +23,12 @@ class Post extends Model
 
      public function scopeFilters(Builder $query, array $filters): Void
      {
-          if(isset($filters['serach'])) {
+          if(isset($filters['search'])) {
 
 
             $query->where(fn (Builder $query) => $query 
-                  ->where("title","LIKE","%". $filters['serach'] ."%")
-                  ->orWhere('content', 'LIKE', '%'. $filters['serach'] . '%')
+                  ->where("title","LIKE","%". $filters['search'] ."%")
+                  ->orWhere('content', 'LIKE', '%'. $filters['search'] . '%')
                   );
           }
 
@@ -45,8 +45,7 @@ class Post extends Model
                $query->whereRelation(
                'tags', 'tags.id', $filters['tag']->id ?? $filters['tag']
                );
-           
-             
+                      
           }
      }
 
