@@ -1,9 +1,14 @@
 <x-layout>
     <div class="space-y-10 md:space-y-16">
 
-           @foreach ($posts as $post)
+           @forelse ($posts as $post)
                <x-post :$post list/>
-           @endforeach
+
+               @empty
+
+               <p class="text-slate-400 text-center">Aucun resultat</p>
+
+           @endforelse
 
             {{ $posts->links() }}
       
